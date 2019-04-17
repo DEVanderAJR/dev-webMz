@@ -92,7 +92,7 @@ function orderna(x,y){
 
  function start(param){
 
-    var teste = new gameDezenas(10,4);
+    var teste = new gameDezenas(6,10);
     //console.log(teste._numPossiveis);
     //console.log ("NUM POSSIVES " + teste.numPossiveis);
     //console.log("TOT DE JOGOS "+ teste.totJogos);
@@ -121,33 +121,30 @@ function orderna(x,y){
         var row = document.createElement("tr");      
         
 
-        for (var i = 0; i < teste.totJogos; i++) {
-            // Create a <td> element and a text node, make the text
-            // node the contents of the <td>, and put the <td> at
-            // the end of the table row
-           
-            var cell =      document.createElement("td");
+        for (var i = 0; i < 2; i++) {
+            
+            
             var cellText1 = document.createTextNode(param[j]);
             var cellText = document.createTextNode(param[j][i]);
-           
-            cell.appendChild(cellText);
+            cell.appendChild(th);
+            cell.appendChild(cellText);  
+            cell.setAttribute("class","table-success");    
+             
             row.appendChild(cell);
 
         }
 
-        // add the row to the end of the table body
+        
         tblBody.appendChild(row);
     }
 
-    // put the <tbody> in the <table>
+    
     tbl.appendChild(tblBody);
-    // appends <table> into <body>
+    
     body.appendChild(tbl);
-    // sets the border attribute of tbl to 2;
-    //cell.setAttribute()
+    
     tbl.setAttribute("class","table table-bordered");
-  //  tbl.setAttribute
- // document.getElementById("table").innerHTML = '<table class="table table-bordered">';
+  
 }
 
 

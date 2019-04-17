@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title> Loteria - My App01 </title>
+        <title> SPEL02-Dezenas - My App01  </title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -14,13 +14,32 @@
     <body>
         <div class="container-fluid">
             <div class="alert alert-info" role="alert">
-            <h1> Spel - Loterias </h1>
+            <h1> SPEL02 - Dezenas - Teste Monetizze</h1>
             </div>
 
-            <div class ="container-fluid" name="monitor" id="monitor" >
-
+           
+            <div class ="container-fluid" name="monitor" id="monitor" >      
+                    <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">Cod. Sorteio</th>
+                                <th scope="col">Num. Sorteados</th>
+                                <th scope="col">Num. Escolhidos</th>                                 
+                            </thead>
+                            <tbody>                           
+                                                          
+                            </tbody>
+                          </table>
+                          <template id='tplMain1'>
+                                <tr> 
+                                     <td></td>
+                                        <td></td>
+                                        <td></td>
+                                      </tr>
+                          </template>
             </div>
 
+           
             <div class="alert alert-danger" role="alert" id='notificando'>
                 <strong>Olá, </strong> Não deixe o campo em branco! ;)
                
@@ -31,12 +50,12 @@
             </div>
              
            <div class ="form-group">
-            <input class="form-control form-control-lg" type="text" placeholder="Quantas vezes pretende jogar? Máximo 6 vezes." id="number3" name="number3">           
+            <input class="form-control form-control-lg" type="text" placeholder="Quantas vezes pretende jogar?" id="number3" name="number3">           
            </div>
         
             <!--Campo para inserso de valores separados por ,-->
             <div class ="form-group">
-                <label for="NumerosAleatorios">Digite seus número da sorte separados por vírgula (,)</label><br>
+                <label for="NumerosAleatorios">Digite o total de números que você escolheu no primeiro campo - Entre 6 e 10 numeros - Separados por vírgula entre 1 e 60 (ex:1,2,3)</label><br>
                 <input class="form-control form-control-lg" type="text" placeholder="Good Luck!" id="number1" name="numeros">           
             </div>
 
@@ -45,13 +64,8 @@
             </div>
 
             <div class = "form-group">            
-                <button type="button" id="cancela" value="cancel" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="mgtMonitor(0)">Jogue Novamente!</button>
-            </div>
-
-            <div class = "form-group">            
-                <button type="button" id="testeale" value="TESTERETORNO" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="start()">TESTE CLASSE!</button>
-            </div>
-            
+                <button type="button" id="cancela" value="cancel" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="MyClass(0)">Jogue Novamente!</button>
+            </div> 
             
             <div class="alert alert-success" role="alert" name='gainGame' id='gainGame'>
                     

@@ -1,16 +1,13 @@
 h1{ color: black;            
 } 
 
-.spinner-border{
-    
+.spinner-border{     
     margin: 10px;
     width: 100px;
     height: 100px;
     font-size: 3em;
    display: relative;
-   display: none;
-
- 
+   display: none; 
 }   
 #monitor{
    
@@ -39,6 +36,5 @@ h1{ color: black;
     font-size: 68px;
     position: absolute;
     margin-left: 40%;
-
 
 }

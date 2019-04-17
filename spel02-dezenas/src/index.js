@@ -6,18 +6,16 @@ limite = 5;// document.getElementById("number2").value;  // limite de números d
 controlCount = 0; //controlador de itera??o
 colorMath = 'black';
 colorBg ='white';
-//include ("class/class_sorteDezenas.js")
-
 /**
- * Função main, realiza os testes e intancia outras funçães
+ * Fun��o main, realiza os testes e intancia outras fun��es
  */
-function mgtMonitor(param, param2, param3){
+function mgtMonitor(param){//ITEM 6;
 
    if (param == 1 && trataNumeros()) {
-        document.getElementById('monitor').style.display = "block";
-       // geraNumeros(1);
-        totJogos(3);
-       // resultGame();
+        document.getElementById('monitor').style.display = "block";    
+        
+        geraNumeros();//finalizar implementa��o  para gerar o resultado se os numeros digitados foram sorteados ou n�o
+         // resultGame(geraNumeros());
 
         }else{     
             controlCount =0; //zerando o contador;
@@ -25,22 +23,18 @@ function mgtMonitor(param, param2, param3){
             if(param == 0 ){// tentando novamente;
 
                 clearInfo(1);notifica(2);notifica(3);notifica(4);notifica(5);
-                notifica(6);
-
-            }
+                notifica(6);            }
             else {
 
                 clearInfo(1);notifica(2);notifica(3);
-            }
-        
+            }   
     } 
     
 }
 /**
- * Função para limpar dados do ultimo sorteio
+ * Funcao para limpar dados do ultimo sorteio
  */
-function clearInfo(i,param){
-    
+function clearInfo(i,param){ // falta implementar os recuros no html;
     /**
      * Alterando propriedades dos filhos     * 
      */
@@ -78,115 +72,63 @@ function clearInfo(i,param){
 
          notifica(3);
 }
-/**
- * Função que tratar os numeros digitados
- */
+function geraNumeros(x){
+
+    this.numPossiveis = document.getElementById('number2').value;
+    this.totJogos = document.getElementById('number3').value;
+    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usu�rio   
+  
+    var campo1= this.valorDigitado;
+    var campo2 = this.numPossiveis;
+    var campo3 = this.totJogos;   
+    controlCount = 0;
+
+    classe= new gameDezenas(campo2, campo3,campo1);
+    controlCount =start3();
+
+return controlCount;
+} 
 function trataNumeros(){
-
-    tst1 = "";
-    limite =7;//document.getElementById('number2').value;
-    numJogos = 3; 
-    tst1 = '1,2,3,4,10,5,7'//document.getElementById('number1').value; 
-
+   
+    tst1 = document.getElementById('number1').value;   // valores escolhidos pelo usu�rio   
+    this.numPossiveis = document.getElementById('number2').value;
+    this.totJogos = document.getElementById('number3').value;
         if(tst1 == ""){
-           //alert("campo vazio!" + tst1);
+          
             notifica(1);
 
         }else{
-              //  alert(tst1);
-              notifica(0);
+            
+            notifica(0);
                 controlNumber = tst1.split(",");
                 var trataNumeros = controlNumber.length; //numeros digitados
+                var qtdjogos = [6,7,8,9,10];
+
+                if (qtdjogos.indexOf(trataNumeros) >= 0){
             
-                if(trataNumeros == limite){
                     return true; //retorna true se deu match;
-                    }
-                    else if(trataNumeros > limite) {   
-                        controlCount =0;                   
-                        alert("Escolha apenas 5 números da sorte! Voc? digitou: " + trataNumeros);
-                        return false;
-                        
-                        }                
-                    else if(trataNumeros < limite) {
-                        controlCount =0; 
-                        alert("Escolha 5 números da sorte! Voc? digitou apenas: " + trataNumeros);
+                    }                               
+                    else{
+                        //controlCount =0; 
+                        alert("Escolha o total de numeros entre 6 e 10! Voc�: " + trataNumeros);
                         clearInfo(1);notifica(2);notifica(3);
                         return false;
-                    }
-            } 
-
-
+            }
+  }
 }
 /**
- * Função que gera os numeros sortidos sem repeti??o
+ * Funcao responsavel pelas notificoes do sistema
  */
-function totJogos(numJogos){
-    for(var k =0; k<= numJogos; k++){
+function notifica(i){//falta implementar os recursos de chamada no html
 
-    geraNumeros(1);
-
-    }
-
-}
-
-function geraNumeros(x){
-
-    var aleatorio = 0;    
-    numero = [];
-    var numeroDig =document.getElementById('number1').value; //Numeros a serem sorteados;
-    var idHtml = "num"; 
-    controlCount = 0;
-    var tagPai1 = document.getElementById('monitor');
-         
-return controlCount;
-} 
-
-
-/***
- * Random retorna um numero entre 0 e 1 a função fica mais assertiva em quest?o de números aleatorios;
- * Round retorna o valor inteiro mais pr?ximo;
- * Floor retorna o menor número inteiro dentre o range;
- * */    
- 
-function noRepeat(){
-    var indiceSorteado;
-
-    indiceSorteado = Math.floor((Math.random() * range));
-   
-    while(numero.indexOf(indiceSorteado) >= 0){ // enqanto o número núo existir;
-
-        indiceSorteado = Math.floor((Math.random() * range)); 
-
-    }
-
- 
-return indiceSorteado;
-
-}
-
-/**
- * Função respons?vel pelas notifica??es do sistema
- */
-function notifica(i){
-
-   // $('#notificando').toast('show');
    switch(i){
 
         case 0:  document.getElementById('notificando').style.display ='none'; break;
         case 1:  document.getElementById('notificando').style.display ='block'; break;        
-        case 2:  {
-                document.getElementById('gainGame').style.display ='none'; break;
-                // var no1 = document.getElementById('gainGame');
-                // document.getElementById('gainGame'); break;
-                //  no1.parentNode.removeChild(no1); break;
-                    
-                }
+        case 2:  document.getElementById('gainGame').style.display ='none'; break;         
         case 3: {
             document.getElementById('endGame').style.display ='none'; break;
-         //   var no2 = document.getElementById('endGame');
-            //document.getElementById('endGame'); break;
-          //  no2.parentNode.removeChild(no2); break; // delanto filho a núvel de nú e núo somente o conte?do;
-         }
+          }
          case 4: 
             document.getElementById('number1').value ="";break; 
 
@@ -200,10 +142,9 @@ function notifica(i){
     
 }
 /**
- * Função que exibe o resutado dos sorteios
+ * Funcao que exibe o resutado dos sorteios
  */
-function resultGame(){
-   // alert("resultgame:");
+function resultGame(controlCount){   
 
     if ((controlCount == 0 || controlCount <= gain) && tst1 != ""){
       // notifica(3);

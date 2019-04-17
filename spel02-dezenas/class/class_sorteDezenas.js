@@ -1,23 +1,16 @@
 
-/**INICIO 13:05 ATÃ‰ 15:20
- * INICIO 16:00 ATÃ‰ 21:40
- * INICIO 22:00
- * ITEM 1
- * CLASSE ATRIBUTO PRIVADO
- */
-
  class gameDezenas{
-    constructor(param1, param2){ //ITEM 2
+    constructor(param1, param2,param3){ //ITEM 2
         this._numPossiveis = param1;
-        var resultado = 0;
+        this._resultado = {};
         this._totJogos = param2;
         this._jogos     = {};   
         this.dezenasAleatorias();
+        this._valorDigitado = param3; //valor digitado pelo usuário que será comparado; complemnto fora da atividade;
        
     }
 
-    get numPossiveis(){        //ITEM 3
-      // this._numPossiveis = this.dezenasAleatorias(param1);
+    get numPossiveis(){        //ITEM 3      
         return this._numPossiveis;
     }    
     set numPossiveis(param1){ //ITEM 3        
@@ -29,12 +22,19 @@
     set totJogos(param2){ //ITEM 3
         this._totJogos = param2;
     }
+
+    get valorDigitado(){        //ITEM 3      
+        return this._valorDigitado;
+    }    
+    set valorDigitado(param3){ //ITEM 3        
+        this._valorDigitado = param3;
+    }
     
   dezenasAleatorias() { //ITEM 4
       var range = 60;
-      var qtdjogos = [6,7,8,9,10];
+      //var qtdjogos = [6,7,8,9,10];
       
-        if (qtdjogos.indexOf(this._numPossiveis) >= 0){
+        if (this._numPossiveis >=6 && this._numPossiveis <= 10){
             var indiceSorteado;
             var numero =[];
 
@@ -52,7 +52,7 @@
             return numero.sort();
         }
         else {
-            alert("Digite um valor entre 6 e 10.");
+            alert("Digite um valor entre 6 e 10. ;)");
             return false;
         }
     }
@@ -61,143 +61,87 @@
     
     for (var p = 0; p < this._totJogos; p++) { 
 
-        this._jogos[p] = [p,this.dezenasAleatorias()]; //criando o array multidimencional;                  
-    }
-  
+        this._jogos[p] = [this.dezenasAleatorias()]; //criando o array multidimencional;                  
+    }  
     return this._jogos;
 }
-         
-                   
+    math(){
+
+        var sorteiosAll = this.allJogos();
+        var numDigiUser = this.valorDigitado;
+        var controlAcertos =0;
+        var totMega = 4;
+        var totalJogos =this.totJogos;
+        var numPossiveis = this.numPossiveis;
+
+        for (var p = 0; p < totalJogos; p++) { 
+            for (var q = 0; q < numPossiveis; q++) { 
+                if(sorteiosAll[p][q] == numDigiUser[q]){
+                    controlAcertos++;
+                }               
+
+            }
+            
+            if(controlAcertos >= totMega){
+
+                this._resultado[p] =[sorteiosAll[p][q],controlAcertos];
+                controlAcertos = 0;
+            console.log(this._resultado);
+            }
+    }
+
+    return this._resultado;
+}
 
 }
 
-function orderna(x,y){
-    return x -y;
 
-  }
+ function MyClass(){//ITEM  DE TESTE
+    this.numPossiveis = document.getElementById('number2').value;
+    this.totJogos = document.getElementById('number3').value;
+    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
+  
+    var campo1= this.valorDigitado;
+    var campo2 = this.numPossiveis;
+    var campo3 = this.totJogos;
 
-
- function testeClass(){
- var teste = new gameDezenas(6,2);
- //console.log(teste._numPossiveis);
- //console.log ("NUM POSSIVES " + teste.numPossiveis);
- //console.log("TOT DE JOGOS "+ teste.totJogos);
- //var teste1 = teste._numPossiveis = 8;
-
- //console.log(teste.numPossiveis);
- start(teste.allJogos());
+ var teste = new gameDezenas(6,6);
+ console.log(teste.math());
 
  }
  
+ function start3(){ // ITEM 7
 
- function start(param){
-
-    var teste = new gameDezenas(6,10);
-    //console.log(teste._numPossiveis);
-    //console.log ("NUM POSSIVES " + teste.numPossiveis);
-    //console.log("TOT DE JOGOS "+ teste.totJogos);
-    //var teste1 = teste._numPossiveis = 8;
-   
-    //console.log(teste.numPossiveis);
-    param=teste.allJogos();
-   
-
-
-    // get the reference for the body
-    var body = document.getElementsByTagName("body")[0];
-
-    // creates a <table> element and a <tbody> element
-    var tbl     = document.createElement("table");
-    var tblBody = document.createElement("tbody");
-    var cabec  =  document.createElement("thead");
-    var th = document.createElement("th");
-      //th.appendChild("total");
-     // th.appendChild("nome");
-   
-       
-    // creating all cells
-    for (var j = 0; j < teste.totJogos; j++) {
-        // creates a table row
-        var row = document.createElement("tr");      
-        
-
-        for (var i = 0; i < 2; i++) {
-            
-            
-            var cellText1 = document.createTextNode(param[j]);
-            var cellText = document.createTextNode(param[j][i]);
-            cell.appendChild(th);
-            cell.appendChild(cellText);  
-            cell.setAttribute("class","table-success");    
-             
-            row.appendChild(cell);
-
-        }
-
-        
-        tblBody.appendChild(row);
-    }
-
-    
-    tbl.appendChild(tblBody);
-    
-    body.appendChild(tbl);
-    
-    tbl.setAttribute("class","table table-bordered");
+    this.numPossiveis = document.getElementById('number2').value;
+    this.totJogos = document.getElementById('number3').value;
+    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
   
-}
+    var campo1= this.valorDigitado;
+    var campo2 = this.numPossiveis;
+    var campo3 = this.totJogos;
 
+    var teste = new gameDezenas(campo2,campo3,campo1);  
 
-function start2(param){
-
-    var teste = new gameDezenas(6,2);
-    //console.log(teste._numPossiveis);
-    //console.log ("NUM POSSIVES " + teste.numPossiveis);
-    //console.log("TOT DE JOGOS "+ teste.totJogos);
-    //var teste1 = teste._numPossiveis = 8;
-   
-    //console.log(teste.numPossiveis);
     param=teste.allJogos();
-   
 
+    var tptMain = document.querySelector("#tplMain1");
+    var tptBody = document.querySelector("tbody");
+    obj_td = tptMain.content.querySelectorAll("td");
+  //  console.log(param);
 
-    // get the reference for the body
-    var table='<table class="table table-striped">';
-    table += '<thead>';
-    table += '<tr>';
-    table += '<th scope="col">#</th><th scope="col">Jogos</th><th scope="col">Numero Sorteados</th><th scope="col">Resultado</th>';
-    table += ' </tr>    </thead>        <tbody>';
+    for(var i =0;i < teste._totJogos; i++){ 
 
-        /**
-         * <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-         * 
-         */
+        col0 = obj_td[0].textContent = i;
+        col1 = obj_td[1].textContent = param[i];
+        col2 = obj_td[2].textContent = campo1; 
 
-    // creating all cells
-    for (var j = 0; j < teste.totJogos; j++) {
-        // creates a table row
-       table += '<tr><th scope="row">';
-       table += j+ '</th>';
-      for (var i = 0; i < teste.totJogos; i++) {
-
-        table += '<td>' + param[j][i] +'</td>';
-          
-            }
-        table += '</tr>';       
-
-
+        var newLin = document.importNode(tptMain.content,true);
+        tptBody.appendChild(newLin); 
     }
 
-    table += '</tbody></table>';
-    
-    document.getElementsByName("monitor").innerHTML = table;
-    console.log (table);
+    //mat
 
-
-
+// falta implementar o valor das correspondecinas dos numeros digitados e retornar para a função principal
+//para mostra o resultado jogo:
+//as linhas mudarão de cor; e será exibido uma img de ganhador.
 }

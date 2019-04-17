@@ -1,17 +1,69 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Dezenas - My app 2 </title>      
-      <script src="index.js"></script>
-   
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> Loteria - My App01 </title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />        
+        <script src="src/index.js"></script>
+        <script src="class/class_sorteDezenas.js"></script>        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 
- <body>
-<script>
-    testeClass();
-    </script>
-</body>
+    <body>
+        <div class="container-fluid">
+            <div class="alert alert-info" role="alert">
+            <h1> Spel - Loterias </h1>
+            </div>
+
+            <div class ="container-fluid" name="monitor" id="monitor" >
+
+            </div>
+
+            <div class="alert alert-danger" role="alert" id='notificando'>
+                <strong>Olá, </strong> Não deixe o campo em branco! ;)
+               
+            </div>
+
+            <div class ="form-group">             
+              <input class="form-control form-control-lg" type="text" placeholder="Quantos números você vai tentar a sorte? Escolha entre 6 e 10." id="number2" name="number2">           
+            </div>
+             
+           <div class ="form-group">
+            <input class="form-control form-control-lg" type="text" placeholder="Quantas vezes pretende jogar? Máximo 6 vezes." id="number3" name="number3">           
+           </div>
+        
+            <!--Campo para inserso de valores separados por ,-->
+            <div class ="form-group">
+                <label for="NumerosAleatorios">Digite seus número da sorte separados por vírgula (,)</label><br>
+                <input class="form-control form-control-lg" type="text" placeholder="Good Luck!" id="number1" name="numeros">           
+            </div>
+
+            <div class = "form-group">            
+                <button type="submit" name="tstGL" id="testeSorte" value="GL!" class="btn btn-primary btn-lg btn-block btn-alert"  onclick="mgtMonitor(1)">Boa Sorte!</button>
+            </div>
+
+            <div class = "form-group">            
+                <button type="button" id="cancela" value="cancel" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="mgtMonitor(0)">Jogue Novamente!</button>
+            </div>
+
+            <div class = "form-group">            
+                <button type="button" id="testeale" value="TESTERETORNO" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="start()">TESTE CLASSE!</button>
+            </div>
+            
+            
+            <div class="alert alert-success" role="alert" name='gainGame' id='gainGame'>
+                    
+                
+            </div>
+            <div class="alert alert-secondary" role="alert" name='endGame' id='endGame'>
+               
+            </div> 
+
+            <div class="alert alert-secondary" role="alert" id ='infoGameG' name ='infoGameG'></div> 
+        </div>
+    </body>
 </html>
 
 

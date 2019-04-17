@@ -1,0 +1,45 @@
+h1{ color: black;            
+} 
+
+.spinner-border{
+    
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    font-size: 3em;
+   display: relative;
+   display: none;
+
+ 
+}   
+#monitor{
+    width: 900px;
+    height: 500px;
+    display: none;
+}
+
+#notificando,#cancela{
+
+    display: none;
+}
+
+#gainGame,#endGame{
+
+    display: none;
+    position: absolute;
+    margin-right: 3em;
+    margin-left: 20%;
+    margin-top: 1;
+    padding: 2;
+
+}
+
+#infoGameG{
+
+    display: none;
+    font-size: 68px;
+    position: absolute;
+    margin-left: 40%;
+
+
+}

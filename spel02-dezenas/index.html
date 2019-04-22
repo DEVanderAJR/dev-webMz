@@ -24,7 +24,9 @@
                               <tr>
                                 <th scope="col">Cod. Sorteio</th>
                                 <th scope="col">Num. Sorteados</th>
-                                <th scope="col">Num. Escolhidos</th>                                 
+                                <th scope="col">Acertos</th>     
+                                <th scope="col">Total Acertos</th>
+                                <th scope="col">Num. Esolhidos</th>                              
                             </thead>
                             <tbody>                           
                                                           
@@ -32,11 +34,23 @@
                           </table>
                           <template id='tplMain1'>
                                 <tr> 
-                                    <td ></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
                           </template>
+
+                          <template id='tplMain2'>
+                            <tr> 
+                                <td class="table-success"></td>
+                                <td class="table-success"></td>
+                                <td class="table-success"></td>
+                                <td class="table-success"></td>
+                                <td class="table-success"></td>
+                            </tr>
+                      </template>
             </div>
 
            
@@ -55,7 +69,7 @@
         
             <!--Campo para inserso de valores separados por ,-->
             <div class ="form-group">
-                <label for="NumerosAleatorios">Digite o total de números que você escolheu no primeiro campo - Entre 6 e 10 numeros - Separados por vírgula entre 1 e 60 (ex:1,2,3)</label><br>
+                <label for="NumerosAleatorios">Digite entre 6 e 10 números separados por vírgula. Escolha entre os números 1 e 60 (ex: 1,20,35,60,5,40)</label><br>
                 <input class="form-control form-control-lg" type="text" placeholder="Good Luck!" id="number1" name="numeros">           
             </div>
 
@@ -64,11 +78,10 @@
             </div>
 
             <div class = "form-group">            
-                <button type="button" id="cancela" value="cancel" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="MyClass(0)">Jogue Novamente!</button>
+                <button type="button" id="cancela" value="cancel" class="btn btn-secundary btn-lg btn-block btn-dark"  onclick="mgtMonitor(0)">Jogue Novamente!</button>
             </div> 
             
-            <div class="alert alert-success" role="alert" name='gainGame' id='gainGame'>
-                    
+            <div class="alert alert-success" role="alert" name='gainGame' id='gainGame'>                    
                 
             </div>
             <div class="alert alert-secondary" role="alert" name='endGame' id='endGame'>

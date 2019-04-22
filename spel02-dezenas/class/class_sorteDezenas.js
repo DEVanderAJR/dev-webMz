@@ -1,5 +1,5 @@
 
- class gameDezenas{
+ class gameDezenas{ //ITEM 1
     constructor(param1, param2,param3){ //ITEM 2
         this._numPossiveis = param1;
         this._resultado = {};
@@ -31,9 +31,8 @@
     }
     
   dezenasAleatorias() { //ITEM 4
-      var range = 10;
-      //var qtdjogos = [6,7,8,9,10];
-      
+        var range = 60;
+            
         if (this._numPossiveis >=6 && this._numPossiveis <= 10){
             var indiceSorteado;
             var numero =[];
@@ -57,121 +56,103 @@
         }
     }
 
-  allJogos() { //ITEM 5
-    
-    for (var p = 0; p < this._totJogos; p++) { 
+    allJogos = function() { //ITEM 5
+        var limiteJogos = this._totJogos;
+        
+        for (var p = 0; p < limiteJogos; p++) { 
 
-        this._jogos[p] = this.dezenasAleatorias(); //criando o array multidimencional;                  
-    }  
-    return this._jogos;
-}
-    math(){
+            this._jogos[p] = this.dezenasAleatorias(); //criando o array multidimencional;                  
+        }  
+        return this._jogos;
+    }
+    math = function(){
 
         var sorteiosAll =this.allJogos(); //recebe todos os jogos da função de jogos 
         var numDigiUser = this.valorDigitado; // recebe os valores digitados do usuário para comparação do sorterio
-        var controlAcertos =0; //controla a qtd de acertos na compração
-        var totMega = 4; // total de pontos aceitos na Mega para considerar ganhador de algum premio >=4
+        var controlAcertos =0; //controla a qtd de acertos na compração        
         var totalJogos =this.totJogos; //recebe qtd de jogos digitado para o usuário uma unica vez;
         var numPossiveis = this.numPossiveis; //recebe qtd de numeros a serem sorteados - digitado usuário uma unica vez;
         var numAllright =[]; //recebe os numeros sorteados;
-        var numAll=[], teste ;
+        var numAll=[];
 
         for (var p = 0; p < totalJogos; p++) { 
-
             for (var q = 0; q < numPossiveis; q++) { 
-
-                console.log(sorteiosAll[p][q],numDigiUser[q]);           
-               
                 for( var j = 0; j < numPossiveis; j++){
-                   // if(numDigiUser.indexOf(sorteiosAll[p][q])>=0){
-                    if(sorteiosAll[p][q] == numDigiUser[j]){
+
+                  if(sorteiosAll[p][q] == numDigiUser[j]){
                         controlAcertos++;
                        numAll.push(numDigiUser[j]);
-                    }  
-
-            }
-                
-            //    console.log(numAllright);
-
-            }
-
-            numAllright[p] = [numAll]; // atribuindo a sequencia de numeros de acertos na varialvel principal;
-            
-            console.log("NumAllright: "+numAllright[p]);
-            console.log("numall: "+ numAll);
-
-           // numAll.length = 0; //limpando array da iteração anterior
-            
-          //  if(controlAcertos >= totMega){
-
-                this._resultado[p] =[
-                    { id: p,
-                      sorteios: sorteiosAll[p],
-                      math: numAllright[p],
-                      resultado: controlAcertos
                     }
-                ]
-                controlAcertos = 0;
-                numAll.length =0;
-           // console.log(this._resultado);
-           // }
-    }
+                }
+            }
+
+            numAllright[p] = numAll.slice(); // atribuindo a sequencia de numeros de acertos na varialvel principal;
+       
+            this._resultado[p] =
+                    { 'id': p,
+                      'sorteios': sorteiosAll[p].join("-"),
+                      'math': numAllright[p].join("-"),
+                      'resultado': controlAcertos
+                    }                
+            controlAcertos = 0;
+            numAll.length =0;
+        }
 
     return this._resultado;
+    }
 }
 
-}
-
-
-
- function MyClass(){//ITEM  DE TESTE
-    this.numPossiveis = document.getElementById('number2').value;
+function start3(){ // ITEM 7
+    var totMega = 4; // total de pontos aceitos na Mega para considerar ganhador de algum premio >=4
+    var gain = 0;
+    this.numPossiveis =  document.getElementById('number2').value;
     this.totJogos = document.getElementById('number3').value;
-    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
-  
-    var campo1= this.valorDigitado;
-    var campo2 = this.numPossiveis;
-    var campo3 = this.totJogos;
-
- var teste = new gameDezenas(6,6);
- console.log(teste.math());
-
- }
- 
- function start3(){ // ITEM 7
-
-    this.numPossiveis = 6;// document.getElementById('number2').value;
-    this.totJogos = 3;//document.getElementById('number3').value;
-    var controlNumber =  document.getElementById('number1').value;   // valores escolhidos pelo usuário   
+    var controlNumber = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
     this.valorDigitado = controlNumber.split(','); 
 
-    var campo1= this.valorDigitado;
+    var campo1 = this.valorDigitado;
     var campo2 = this.numPossiveis;
     var campo3 = this.totJogos;
 
-    var teste = new gameDezenas(campo2,campo3,campo1);  
+    var teste = new gameDezenas(campo2,campo3,campo1);  // instanciando um novo objeto da classe
 
     param=teste.math();
-    console.log(param);
 
     var tptMain = document.querySelector("#tplMain1");
+    var tptMain2 = document.querySelector("#tplMain2"); // linhas sucess quando ganhar
     var tptBody = document.querySelector("tbody");
     obj_td = tptMain.content.querySelectorAll("td");
+    obj_td2 = tptMain2.content.querySelectorAll("td"); // linhas sucess quando ganhar
+    
     //  console.log(param);
 
     for(var i =0;i < teste._totJogos; i++){ 
 
-        col0 = obj_td[0].textContent = i;
-        col1 = obj_td[1].textContent = param[i];
-        col2 = obj_td[2].textContent = campo1; 
+            if(param[i]['resultado'] < totMega){
 
-        var newLin = document.importNode(tptMain.content,true);
-        tptBody.appendChild(newLin); 
-         }
+                col0 = obj_td[0].textContent = param[i]['id'];
+                col1 = obj_td[1].textContent = param[i]['sorteios'];
+                col2 = obj_td[2].textContent = param[i]['math']; 
+                col3 = obj_td[3].textContent = param[i]['resultado']; 
+                col4 = obj_td[4].textContent = campo1.join("-");
 
-    //mat
+                var newLin = document.importNode(tptMain.content,true);
+                tptBody.appendChild(newLin); 
+            }
+            else // destacar linhas quando o acero for >= 4;
+            {
+                col0 = obj_td2[0].textContent = param[i]['id'];
+                col1 = obj_td2[1].textContent = param[i]['sorteios'];
+                col2 = obj_td2[2].textContent = param[i]['math']; 
+                col3 = obj_td2[3].textContent = param[i]['resultado']; 
+                col4 = obj_td2[4].textContent = campo1.join("-");
 
-// falta implementar o valor das correspondecinas dos numeros digitados e retornar para a função principal
-//para mostra o resultado jogo:
-//as linhas mudarão de cor; e será exibido uma img de ganhador.
+                var newLin = document.importNode(tptMain2.content,true);
+                tptBody.appendChild(newLin); 
+
+                gain++;
+
+                }
+            } 
+    return gain;
 }

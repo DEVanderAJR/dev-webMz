@@ -31,7 +31,7 @@
     }
     
   dezenasAleatorias() { //ITEM 4
-      var range = 60;
+      var range = 10;
       //var qtdjogos = [6,7,8,9,10];
       
         if (this._numPossiveis >=6 && this._numPossiveis <= 10){
@@ -61,39 +61,67 @@
     
     for (var p = 0; p < this._totJogos; p++) { 
 
-        this._jogos[p] = [this.dezenasAleatorias()]; //criando o array multidimencional;                  
+        this._jogos[p] = this.dezenasAleatorias(); //criando o array multidimencional;                  
     }  
     return this._jogos;
 }
     math(){
 
-        var sorteiosAll = this.allJogos();
-        var numDigiUser = this.valorDigitado;
-        var controlAcertos =0;
-        var totMega = 4;
-        var totalJogos =this.totJogos;
-        var numPossiveis = this.numPossiveis;
+        var sorteiosAll =this.allJogos(); //recebe todos os jogos da função de jogos 
+        var numDigiUser = this.valorDigitado; // recebe os valores digitados do usuário para comparação do sorterio
+        var controlAcertos =0; //controla a qtd de acertos na compração
+        var totMega = 4; // total de pontos aceitos na Mega para considerar ganhador de algum premio >=4
+        var totalJogos =this.totJogos; //recebe qtd de jogos digitado para o usuário uma unica vez;
+        var numPossiveis = this.numPossiveis; //recebe qtd de numeros a serem sorteados - digitado usuário uma unica vez;
+        var numAllright =[]; //recebe os numeros sorteados;
+        var numAll=[], teste ;
 
         for (var p = 0; p < totalJogos; p++) { 
+
             for (var q = 0; q < numPossiveis; q++) { 
-                if(sorteiosAll[p][q] == numDigiUser[q]){
-                    controlAcertos++;
-                }               
+
+                console.log(sorteiosAll[p][q],numDigiUser[q]);           
+               
+                for( var j = 0; j < numPossiveis; j++){
+                   // if(numDigiUser.indexOf(sorteiosAll[p][q])>=0){
+                    if(sorteiosAll[p][q] == numDigiUser[j]){
+                        controlAcertos++;
+                       numAll.push(numDigiUser[j]);
+                    }  
 
             }
+                
+            //    console.log(numAllright);
+
+            }
+
+            numAllright[p] = [numAll]; // atribuindo a sequencia de numeros de acertos na varialvel principal;
             
-            if(controlAcertos >= totMega){
+            console.log("NumAllright: "+numAllright[p]);
+            console.log("numall: "+ numAll);
 
-                this._resultado[p] =[sorteiosAll[p][q],controlAcertos];
+           // numAll.length = 0; //limpando array da iteração anterior
+            
+          //  if(controlAcertos >= totMega){
+
+                this._resultado[p] =[
+                    { id: p,
+                      sorteios: sorteiosAll[p],
+                      math: numAllright[p],
+                      resultado: controlAcertos
+                    }
+                ]
                 controlAcertos = 0;
-            console.log(this._resultado);
-            }
+                numAll.length =0;
+           // console.log(this._resultado);
+           // }
     }
 
     return this._resultado;
 }
 
 }
+
 
 
  function MyClass(){//ITEM  DE TESTE
@@ -112,22 +140,24 @@
  
  function start3(){ // ITEM 7
 
-    this.numPossiveis = document.getElementById('number2').value;
-    this.totJogos = document.getElementById('number3').value;
-    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
-  
+    this.numPossiveis = 6;// document.getElementById('number2').value;
+    this.totJogos = 3;//document.getElementById('number3').value;
+    var controlNumber =  document.getElementById('number1').value;   // valores escolhidos pelo usuário   
+    this.valorDigitado = controlNumber.split(','); 
+
     var campo1= this.valorDigitado;
     var campo2 = this.numPossiveis;
     var campo3 = this.totJogos;
 
     var teste = new gameDezenas(campo2,campo3,campo1);  
 
-    param=teste.allJogos();
+    param=teste.math();
+    console.log(param);
 
     var tptMain = document.querySelector("#tplMain1");
     var tptBody = document.querySelector("tbody");
     obj_td = tptMain.content.querySelectorAll("td");
-  //  console.log(param);
+    //  console.log(param);
 
     for(var i =0;i < teste._totJogos; i++){ 
 
@@ -137,7 +167,7 @@
 
         var newLin = document.importNode(tptMain.content,true);
         tptBody.appendChild(newLin); 
-    }
+         }
 
     //mat
 

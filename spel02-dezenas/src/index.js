@@ -2,19 +2,19 @@ controlNumber =[]; //variavel para controlar numeros digitados;
 arrDaSorte=[]; //array de numeros aleatorios
 gain = 3; //numero maximo de acertos para vc sair ganhador
 range = 15; //Multiplicador do range para numeros aleatorios
-limite = 5;// document.getElementById("number2").value;  // limite de nÃºmeros digitados
+limite = 5;// document.getElementById("number2").value;  // limite de números digitados
 controlCount = 0; //controlador de itera??o
 colorMath = 'black';
 colorBg ='white';
 /**
- * Função main, realiza os testes e intancia outras funções
+ * Fun??o main, realiza os testes e intancia outras fun??es
  */
 function mgtMonitor(param){//ITEM 6;
 
    if (param == 1 && trataNumeros()) {
         document.getElementById('monitor').style.display = "block";    
         
-        geraNumeros();//finalizar implementação  para gerar o resultado se os numeros digitados foram sorteados ou não
+        geraNumeros();//finalizar implementa??o  para gerar o resultado se os numeros digitados foram sorteados ou n?o
          // resultGame(geraNumeros());
 
         }else{     
@@ -74,26 +74,28 @@ function clearInfo(i,param){ // falta implementar os recuros no html;
 }
 function geraNumeros(x){
 
-    this.numPossiveis = document.getElementById('number2').value;
+    /*this.numPossiveis = document.getElementById('number2').value;
     this.totJogos = document.getElementById('number3').value;
-    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
+    this.valorDigitado = document.getElementById('number1').value;   // valores escolhidos pelo usu?rio   
   
-    var campo1= this.valorDigitado;
+    var campo1= this.valorDigitado.split(',');
     var campo2 = this.numPossiveis;
-    var campo3 = this.totJogos;   
+    var campo3 = this.totJogos; 
+    */  
     controlCount = 0;
 
-    classe= new gameDezenas(campo2, campo3,campo1);
+   // classe= new gameDezenas(campo2, campo3,campo1);
     controlCount =start3();
 
 return controlCount;
 } 
 function trataNumeros(){
    
-    tst1 = document.getElementById('number1').value;   // valores escolhidos pelo usuário   
-    this.numPossiveis = document.getElementById('number2').value;
-    this.totJogos = document.getElementById('number3').value;
-        if(tst1 == ""){
+    tst1 = '3,4,5,6,7,8';// document.getElementById('number1').value;   // valores escolhidos pelo usu?rio   
+    tst2 = '6';// this.numPossiveis = document.getElementById('number2').value;
+    tst3 = '3';//this.totJogos = document.getElementById('number3').value;
+
+        if(tst1 =="" || tst2 ==""|| tst3 == "" ){
           
             notifica(1);
 
@@ -110,7 +112,7 @@ function trataNumeros(){
                     }                               
                     else{
                         //controlCount =0; 
-                        alert("Escolha o total de numeros entre 6 e 10! Você: " + trataNumeros);
+                        alert("Escolha o total de numeros entre 6 e 10! Voc?: " + trataNumeros);
                         clearInfo(1);notifica(2);notifica(3);
                         return false;
             }
